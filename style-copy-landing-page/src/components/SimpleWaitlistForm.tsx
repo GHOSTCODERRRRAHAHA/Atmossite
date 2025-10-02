@@ -48,9 +48,7 @@ export function SimpleWaitlistForm({
           email: email.trim().toLowerCase(),
           source: source,
           status: 'active'
-        })
-        .select()
-        .single();
+        });
 
       if (error) {
         // Handle duplicate email
