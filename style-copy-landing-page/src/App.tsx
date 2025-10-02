@@ -4,8 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+// Stripe Elements temporarily disabled
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import ErrorBoundary from "./components/ErrorBoundary";
 import { AccessibilityProvider } from "./components/AccessibilityProvider";
 import { CartProvider } from "./contexts/CartContext";
@@ -28,8 +29,8 @@ const queryClient = new QueryClient({
   },
 });
 
-// Initialize Stripe with your publishable key
-const stripePromise = loadStripe('pk_live_51Ri1QoCiVNimrvXub9cmXqIe8HVwgQO4I6fMPsGbsC74IHCa5S6FMoYhAcya0FJwQhhmHhBlBd8YOohgoT8fjble003gsjHjji');
+// Stripe temporarily disabled - using mock payments
+// const stripePromise = loadStripe('pk_live_51Ri1QoCiVNimrvXub9cmXqIe8HVwgQO4I6fMPsGbsC74IHCa5S6FMoYhAcya0FJwQhhmHhBlBd8YOohgoT8fjble003gsjHjji');
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -94,30 +95,28 @@ const App = () => {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Elements stripe={stripePromise}>
-          <CartProvider>
-            <AccessibilityProvider>
-              <TooltipProvider>
-                <Toaster />
-                <Sonner />
-                <BrowserRouter>
-                  <ScrollToTop />
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/collection" element={<Collection />} />
-                    <Route path="/halo" element={<Halo />} />
-                    <Route path="/purchase" element={<Purchase />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                  <Footer />
-                </BrowserRouter>
-              </TooltipProvider>
-            </AccessibilityProvider>
-          </CartProvider>
-        </Elements>
+        <CartProvider>
+          <AccessibilityProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <ScrollToTop />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/collection" element={<Collection />} />
+                  <Route path="/halo" element={<Halo />} />
+                  <Route path="/purchase" element={<Purchase />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </BrowserRouter>
+            </TooltipProvider>
+          </AccessibilityProvider>
+        </CartProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );
