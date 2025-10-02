@@ -1,0 +1,23 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Founder & CEO: [Your Name]
+    Contact: hello@wearatmos.com
+    Location: [Your Location]
+
+# THANKS
+
+    All early supporters and waitlist members
+    The open source community
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    React, TypeScript
+    Vite, Tailwind CSS
+    Supabase, Stripe
+    Vercel hosting
+    
+    Last update: 2025/01/02

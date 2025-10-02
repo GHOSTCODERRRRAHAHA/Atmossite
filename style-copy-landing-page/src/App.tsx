@@ -18,6 +18,9 @@ import Purchase from "./pages/Purchase";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Contact from "./pages/Contact";
 import Footer from "@/components/Footer";
 
 const queryClient = new QueryClient({
@@ -108,9 +111,12 @@ const App = () => {
                   <Route path="/collection" element={<Collection />} />
                   <Route path="/halo" element={<Halo />} />
                   <Route path="/purchase" element={<Purchase />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="*" element={<NotFound />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
               </BrowserRouter>
