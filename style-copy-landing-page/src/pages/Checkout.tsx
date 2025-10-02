@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useCart } from '@/contexts/CartContext';
-import { RealStripeElements } from '@/components/RealStripeElements';
+import { StripePaymentSection } from '@/components/StripePaymentSection';
 import { toast } from 'sonner';
 
 const Checkout = () => {
@@ -382,7 +382,7 @@ const Checkout = () => {
                         </p>
                         
                         {/* Stripe Payment Section */}
-                        <RealStripeElements
+                        <StripePaymentSection
                           amount={getTotalPrice()}
                           customerInfo={customerInfo}
                           onPaymentSuccess={handlePaymentSuccess}
