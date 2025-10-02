@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Rate Limit</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .success { color: green; margin-top: 10px; }
+        .info { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Clear Waitlist Rate Limit</h1>
+    
+    <div class="info">
+        <p><strong>Use this page to clear the rate limit if you're testing the waitlist form.</strong></p>
+        <p>Rate limiting prevents spam but can be annoying during testing.</p>
+    </div>
+    
+    <button onclick="clearRateLimit()">Clear Rate Limit</button>
+    <div id="result"></div>
+    
+    <script>
+        function clearRateLimit() {
+            try {
+                localStorage.removeItem('atmos-waitlist-rate-limit');
+                document.getElementById('result').innerHTML = '<div class="success">✅ Rate limit cleared! You can now test the waitlist form again.</div>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<div style="color: red;">❌ Error clearing rate limit: ' + error.message + '</div>';
+            }
+        }
+        
+        // Show current rate limit status
+        function showStatus() {
+            const rateLimitData = localStorage.getItem('atmos-waitlist-rate-limit');
+            if (rateLimitData) {
+                const data = JSON.parse(rateLimitData);
+                const resetTime = new Date(data.resetTime);
+                const now = new Date();
+                const isActive = now < resetTime;
+                
+                document.getElementById('result').innerHTML = 
+                    `<div class="info">
+                        <strong>Current Status:</strong><br>
+                        Rate Limited: ${isActive ? 'Yes' : 'No'}<br>
+                        Attempts: ${data.count}/3<br>
+                        Reset Time: ${resetTime.toLocaleString()}<br>
+                        ${isActive ? 'Time Left: ' + Math.ceil((resetTime - now) / 60000) + ' minutes' : 'Rate limit expired'}
+                    </div>`;
+            } else {
+                document.getElementById('result').innerHTML = '<div class="info">No rate limit active</div>';
+            }
+        }
+        
+        // Show status on load
+        showStatus();
+    </script>
+</body>
+</html>

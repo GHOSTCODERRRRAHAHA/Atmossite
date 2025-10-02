@@ -24,18 +24,18 @@ class SupabaseWaitlistService {
     const rateLimitData = localStorage.getItem(this.rateLimitKey);
     
     if (!rateLimitData) {
-      localStorage.setItem(this.rateLimitKey, JSON.stringify({ count: 1, resetTime: now + 15 * 60 * 1000 }));
+      localStorage.setItem(this.rateLimitKey, JSON.stringify({ count: 1, resetTime: now + 5 * 60 * 1000 }));
       return false;
     }
 
     const { count, resetTime } = JSON.parse(rateLimitData);
     
     if (now > resetTime) {
-      localStorage.setItem(this.rateLimitKey, JSON.stringify({ count: 1, resetTime: now + 15 * 60 * 1000 }));
+      localStorage.setItem(this.rateLimitKey, JSON.stringify({ count: 1, resetTime: now + 5 * 60 * 1000 }));
       return false;
     }
 
-    if (count >= 5) {
+    if (count >= 3) {
       return true;
     }
 
@@ -50,7 +50,7 @@ class SupabaseWaitlistService {
     
     // Check rate limiting
     if (this.isRateLimited()) {
-      throw new Error('Too many attempts. Please wait 15 minutes before trying again.');
+      throw new Error('Too many attempts. Please wait 5 minutes before trying again.');
     }
 
     try {
@@ -256,7 +256,7 @@ class SupabaseWaitlistService {
   checkRateLimit(identifier: string) {
     return {
       allowed: !this.isRateLimited(),
-      resetTime: this.isRateLimited() ? Date.now() + 15 * 60 * 1000 : undefined,
+      resetTime: this.isRateLimited() ? Date.now() + 5 * 60 * 1000 : undefined,
     };
   }
 

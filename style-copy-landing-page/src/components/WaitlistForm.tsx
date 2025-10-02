@@ -42,7 +42,7 @@ export function WaitlistForm({
     
     if (!rateLimit.allowed) {
       const resetTime = rateLimit.resetTime;
-      const minutesLeft = resetTime ? Math.ceil((resetTime - Date.now()) / 60000) : 15;
+      const minutesLeft = resetTime ? Math.ceil((resetTime - Date.now()) / 60000) : 5;
       toast.error(`Too many attempts. Please wait ${minutesLeft} minutes before trying again.`);
       return;
     }
