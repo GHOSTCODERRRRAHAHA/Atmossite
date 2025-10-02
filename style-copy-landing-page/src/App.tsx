@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
 });
 
 // Initialize Stripe with your publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51Ri1QoCiVNimrvXub9cmXqIe8HVwgQO4I6fMPsGbsC74IHCa5S6FMoYhAcya0FJwQhhmHhBlBd8YOohgoT8fjble003gsjHjji');
+const stripePromise = loadStripe('pk_live_51Ri1QoCiVNimrvXub9cmXqIe8HVwgQO4I6fMPsGbsC74IHCa5S6FMoYhAcya0FJwQhhmHhBlBd8YOohgoT8fjble003gsjHjji');
 
 function ScrollToTop() {
   const { pathname } = useLocation();

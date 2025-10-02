@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { WaitlistForm } from "./WaitlistForm";
+import { SimpleWaitlistForm } from "./SimpleWaitlistForm";
 import { Bell, Users, Sparkles } from "lucide-react";
 
 const CTASection = () => {
@@ -39,7 +39,7 @@ const CTASection = () => {
             </div>
             
             <div id="waitlist-form">
-              <WaitlistForm source="cta-section" />
+              <SimpleWaitlistForm source="cta-section" />
             </div>
             
             {/* Trust indicators */}
