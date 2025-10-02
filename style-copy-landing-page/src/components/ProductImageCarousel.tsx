@@ -15,7 +15,7 @@ const ProductImageCarousel = () => {
       alt: "Atmos Halo - Back View"
     },
     {
-      src: "/AngledView.png" + cacheBuster,
+      src: "/Angledview.png" + cacheBuster,
       alt: "Atmos Halo - Angled View"
     }
   ];

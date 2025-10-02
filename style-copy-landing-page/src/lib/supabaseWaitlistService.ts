@@ -59,10 +59,9 @@ class SupabaseWaitlistService {
         .from('waitlist')
         .select('*')
         .eq('email', validatedData.email)
-        .single();
+        .maybeSingle();
 
-      if (checkError && checkError.code !== 'PGRST116') {
-        // PGRST116 is "not found" error, which is expected for new emails
+      if (checkError) {
         console.error('Error checking existing email:', checkError);
         throw new Error('Failed to check email. Please try again.');
       }
@@ -135,7 +134,7 @@ class SupabaseWaitlistService {
     try {
       const { count, error } = await supabase
         .from('waitlist')
-        .select('*', { count: 'exact', head: true })
+        .select('id', { count: 'exact', head: true })
         .eq('status', 'active');
 
       if (error) {
