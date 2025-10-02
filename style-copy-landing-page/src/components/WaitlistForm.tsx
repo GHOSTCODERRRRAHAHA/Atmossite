@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { addToWaitlist, checkRateLimit, waitlistSchema, type WaitlistFormData } from "@/lib/waitlistService";
+import { addToWaitlist, checkRateLimit, waitlistSchema, type WaitlistFormData } from "@/lib/supabaseWaitlistService";
 import { CheckCircle, Loader2, Users, Sparkles } from "lucide-react";
 
 interface WaitlistFormProps {

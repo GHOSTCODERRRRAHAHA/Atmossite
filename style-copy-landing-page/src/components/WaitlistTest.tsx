@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { WaitlistForm } from './WaitlistForm';
 import { WaitlistCount } from './WaitlistCount';
-import { getWaitlistCount, getWaitlistStats } from '@/lib/waitlistService';
+import { getWaitlistCount, getWaitlistStats } from '@/lib/supabaseWaitlistService';
 
 export function WaitlistTest() {
   const [count, setCount] = useState<number | null>(null);

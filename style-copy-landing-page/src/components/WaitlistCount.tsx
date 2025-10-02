@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getWaitlistCount } from '@/lib/waitlistService';
+import { getWaitlistCount } from '@/lib/supabaseWaitlistService';
 import { Users, TrendingUp, Clock } from 'lucide-react';
 
 interface WaitlistCountProps {
