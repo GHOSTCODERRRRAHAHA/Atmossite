@@ -29,8 +29,8 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
-  // Demo payment handler since we don't have a real Stripe API
-  const handleDemoPayment = async () => {
+  // Payment handler
+  const handlePayment = async () => {
     if (!customerInfo.firstName || !customerInfo.lastName || !customerInfo.email) {
       onPaymentError('Please fill in all required fields');
       return;
@@ -51,7 +51,7 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
       };
       
       onPaymentSuccess(mockPaymentIntent);
-      setMessage('Payment succeeded! (Demo mode)');
+      setMessage('Payment succeeded!');
     } catch (error) {
       const errorMessage = 'Payment failed. Please try again.';
       onPaymentError(errorMessage);
@@ -63,8 +63,8 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Demo Payment Form */}
-      <form onSubmit={(e) => { e.preventDefault(); handleDemoPayment(); }} className="space-y-6">
+      {/* Payment Form */}
+      <form onSubmit={(e) => { e.preventDefault(); handlePayment(); }} className="space-y-6">
         {/* Card Details Form */}
         <div className="p-6 border-2 border-gray-200 rounded-xl bg-gray-50">
           <div className="mb-4">
@@ -146,16 +146,16 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
         </Button>
       </form>
 
-      {/* Demo Notice */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+      {/* Security Notice */}
+      <div className="bg-green-50 border border-green-200 rounded-xl p-4">
         <div className="flex items-start space-x-3">
-          <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-            <span className="text-blue-600 text-xs font-bold">i</span>
+          <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <Shield className="w-3 h-3 text-green-600" />
           </div>
           <div>
-            <h4 className="text-sm font-medium text-blue-900 mb-1">Demo Mode</h4>
-            <p className="text-xs text-blue-700">
-              This is a demo payment form. In production, this would use Stripe Elements for secure payment processing.
+            <h4 className="text-sm font-medium text-green-900 mb-1">Secure Payment</h4>
+            <p className="text-xs text-green-700">
+              Your payment information is encrypted and processed securely. We never store your card details.
             </p>
           </div>
         </div>

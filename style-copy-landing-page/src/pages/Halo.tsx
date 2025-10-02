@@ -327,6 +327,43 @@ const Halo = () => {
                 </div>
 
               </div>
+
+              {/* Order Now Button */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-4 items-center">
+                  <Button 
+                    asChild 
+                    className="group relative overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black hover:from-gray-900 hover:via-black hover:to-gray-900 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-3xl border-0 min-w-[200px]"
+                  >
+                    <Link to="/purchase" className="flex items-center justify-center space-x-3">
+                      <Zap className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+                      <span>Order Now</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-transparent to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </Link>
+                  </Button>
+                  
+                  <div className="text-center sm:text-left">
+                    <p className="text-sm text-gray-600 mb-1">Starting at <span className="font-semibold text-black">$50</span> deposit</p>
+                    <p className="text-xs text-gray-500">Fully refundable • Ships Q2 2025</p>
+                  </div>
+                </div>
+                
+                {/* Trust indicators */}
+                <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-6 text-xs text-gray-500">
+                  <div className="flex items-center space-x-1">
+                    <Shield className="w-4 h-4" />
+                    <span>Secure checkout</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <RefreshCw className="w-4 h-4" />
+                    <span>30-day returns</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Lock className="w-4 h-4" />
+                    <span>Privacy protected</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
