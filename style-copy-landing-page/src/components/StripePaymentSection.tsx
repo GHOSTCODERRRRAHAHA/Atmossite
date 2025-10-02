@@ -121,15 +121,29 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
           <p className="text-sm text-green-700 mt-1 pr-8">
             Securely pay with your saved info, or create a Link account for faster checkout next time.
           </p>
-          <div className="mt-3">
-            <input
-              type="email"
-              placeholder="Email"
-              value={linkEmail}
-              onChange={(e) => setLinkEmail(e.target.value)}
-              className="w-full max-w-xs px-3 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
-            />
-          </div>
+                <div className="mt-3 flex space-x-2">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={linkEmail}
+                    onChange={(e) => setLinkEmail(e.target.value)}
+                    className="flex-1 max-w-xs px-3 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (linkEmail && linkEmail.includes('@')) {
+                        handlePayment();
+                      } else {
+                        alert('Please enter a valid email address');
+                      }
+                    }}
+                    disabled={isLoading}
+                    className="px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? 'Processing...' : 'Pay with Link'}
+                  </button>
+                </div>
           <div className="flex items-center space-x-2 mt-2">
             <LinkIcon className="w-4 h-4 text-gray-500" />
             <span className="text-xs text-gray-500">link</span>
@@ -138,7 +152,7 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
       )}
 
       {/* Payment Form */}
-      <form onSubmit={(e) => { e.preventDefault(); handlePayment(); }} className="space-y-4">
+      <div className="space-y-4">
         {selectedPaymentMethod === 'card' && (
           <div className="space-y-4">
             {/* Card Number */}
@@ -209,12 +223,17 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
 
         {selectedPaymentMethod === 'googlepay' && (
           <div className="text-center py-8">
-            <div className="inline-flex items-center space-x-2 px-6 py-3 bg-black text-white rounded-lg">
+            <button
+              type="button"
+              onClick={handlePayment}
+              disabled={isLoading}
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
                 <span className="text-black text-sm font-bold">G</span>
               </div>
-              <span>Pay with Google Pay</span>
-            </div>
+              <span>{isLoading ? 'Processing...' : 'Pay with Google Pay'}</span>
+            </button>
             <p className="text-sm text-gray-500 mt-2">Click to pay with your Google Pay account</p>
           </div>
         )}
@@ -232,7 +251,8 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
 
         {/* Payment Button */}
         <Button
-          type="submit"
+          type="button"
+          onClick={handlePayment}
           disabled={isLoading}
           className="w-full bg-blue-600 text-white hover:bg-blue-700 py-4 text-base font-semibold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
@@ -248,7 +268,7 @@ const StripePaymentSection: React.FC<StripePaymentSectionProps> = ({
             </div>
           )}
         </Button>
-      </form>
+      </div>
 
       {/* Security Notice */}
       <div className="text-center">
